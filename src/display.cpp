@@ -3,7 +3,6 @@
 Display::Display(LiquidCrystal_I2C *lcd)
 {
     _lcd = lcd;
-    lcd->init();
 }
 
 bool Display::is_on()

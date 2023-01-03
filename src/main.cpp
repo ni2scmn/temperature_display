@@ -11,6 +11,7 @@
 // constants won't change. They're used here to set pin numbers:
 const int button_pin = 7; // the number of the pushbutton pin
 const int debounce_delay = 50;
+const int doubleclick_threshold = 2000;
 
 LiquidCrystal_I2C lcd(0x27, 20, 4); // set the LCD address to 0x27 for a 16 chars and 2 line display
 
@@ -20,7 +21,9 @@ int min_temperature = 200;
 unsigned long last_update = 0;
 unsigned long last_button_press;
 unsigned long update_interval = 300;
-unsigned int display_duration = 3000;
+unsigned int display_duration = 30000;
+
+bool button_was_pressed = false;
 
 void update_extreme_temperature(int temperature, int *min_temperature, int *max_temperature);
 bool check_update_temperature(unsigned long *last_update, unsigned long *update_interval);
@@ -35,6 +38,7 @@ void setup()
 {
   Serial.begin(9600);
   pinMode(7, INPUT_PULLUP);
+  lcd.init();
   display.turn_off();
   lcd.setCursor(1, 0);
   lcd.print("Current/Max/Min:");
@@ -48,24 +52,30 @@ void loop()
     update_extreme_temperature(temperature, &min_temperature, &max_temperature);
     print_temperature(&lcd, temperature, min_temperature, max_temperature);
   }
-
-
+  // Serial.println(button.is_pressed());
   if (button.is_pressed())
   {
-    last_button_press = millis();
-
+    if (button_was_pressed)
+    {
+      return;
+    }
     if (!display.is_on())
     {
-     display.turn_on();
+      display.turn_on();
     }
-    else if (display.is_on())
+    else if (display.is_on() & ((last_button_press + doubleclick_threshold) >= millis()))
     {
+      // Serial.println("11");
       reset_extreme_temperature(&min_temperature, &max_temperature);
     }
+    last_button_press = millis();
+    button_was_pressed = true;
+  }
+  else {
+    button_was_pressed = false;
   }
 
-  if (display.is_on() & last_button_press + display_duration < millis())
-  {
+  if (display.is_on() & (last_button_press + display_duration < millis())) {
     display.turn_off();
   }
 }
