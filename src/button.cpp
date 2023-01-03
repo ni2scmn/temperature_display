@@ -7,7 +7,8 @@ Button::Button(byte pin_, int mode_, unsigned long debounce_delay_)
     last_debounce_time = millis();
     debounce_delay = debounce_delay_;
     last_button_state = HIGH;
-    pinMode(pin, mode_);
+
+    press_response_given = false;
 }
 
 bool Button::is_pressed()
@@ -27,4 +28,19 @@ bool Button::is_pressed()
     }
     last_button_state = reading;
     return button_state == LOW;
+}
+
+bool Button::is_pressed_new()
+{
+    if(is_pressed() & !press_response_given) {
+        press_response_given = true;
+        return true;
+    }
+    if(is_pressed() & press_response_given) {
+        return false;
+    }
+    else {
+        press_response_given = false;
+        return false;
+    }
 }
