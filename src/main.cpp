@@ -33,24 +33,31 @@ void setup()
 void loop()
 {
 
-  if (check_update_temperature(&last_update, &update_interval))
+  // update page if neccessary
+  if (check_update_page(last_update, update_interval))
   {
     pages[0]->update_page();
   }
 
+  // handle button click
   if (button.is_pressed_new())
   {
     if (!display.is_on())
     {
       display.turn_on();
     }
-    else if (display.is_on() & ((last_button_press + doubleclick_threshold) >= millis()))
-    {
-      pages[0]->reset_page();
+    else if(display.is_on()) {
+      if((last_button_press + doubleclick_threshold) >= millis()) {
+        pages[0]->reset_page();
+      }
+      else {
+        // TODO
+      }
     }
     last_button_press = millis();
   }
 
+  // turn display off again after certain threshold
   if (display.is_on() & (last_button_press + display_duration < millis()))
   {
     display.turn_off();
