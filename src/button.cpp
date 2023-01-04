@@ -32,14 +32,17 @@ bool Button::is_pressed()
 
 bool Button::is_pressed_new()
 {
-    if(is_pressed() & !press_response_given) {
+    if (is_pressed() & !press_response_given)
+    {
         press_response_given = true;
         return true;
     }
-    if(is_pressed() & press_response_given) {
+    if (is_pressed() & press_response_given)
+    {
         return false;
     }
-    else {
+    else
+    {
         press_response_given = false;
         return false;
     }

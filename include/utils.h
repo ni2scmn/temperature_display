@@ -14,5 +14,4 @@ int read_temperature();
 void print_temperature(LiquidCrystal_I2C *lcd, int temperature, int min_temperature, int max_temperature);
 void reset_extreme_temperature(int *min_temperature, int *max_temperature);
 
-
 #endif
