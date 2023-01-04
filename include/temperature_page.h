@@ -1,14 +1,14 @@
-#ifndef TEMPERATURE_DISPLAY_H
-#define TEMPERATURE_DISPLAY_H
+#ifndef TEMPERATURE_PAGE_H
+#define TEMPERATURE_PAGE_H
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#include "info_display.h"
+#include "info_page.h"
 #include "utils.h"
 
-class TemperatureDisplay : public InfoDisplay
+class TemperaturePage : public InfoPage
 {
 private:
     int temperature;
@@ -19,7 +19,7 @@ public:
     void print_page();
     void update_page();
     void reset_page();
-    TemperatureDisplay(LiquidCrystal_I2C *lcd_);
+    TemperaturePage(LiquidCrystal_I2C *lcd_);
 };
 
 #endif

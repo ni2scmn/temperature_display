@@ -5,7 +5,7 @@
 #include "button.h"
 #include "display.h"
 #include "utils.h"
-#include "temperature_display.h"
+#include "temperature_page.h"
 
 const int button_pin = 7;
 const int debounce_delay = 50;
@@ -18,9 +18,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 Button button(button_pin, INPUT_PULLUP, debounce_delay);
 Display display(&lcd);
 
-TemperatureDisplay td(&lcd);
-
-InfoDisplay *pages[1] = {&td};
+TemperaturePage tp(&lcd);
+InfoPage *pages[1] = {&tp};
 
 void setup()
 {

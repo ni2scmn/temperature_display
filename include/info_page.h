@@ -1,9 +1,9 @@
-#ifndef INFO_DISPLAY_H
-#define INFO_DISPLAY_H
+#ifndef INFO_PAGE_H
+#define INFO_PAGE_H
 
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-class InfoDisplay
+class InfoPage
 {
 protected:
     LiquidCrystal_I2C *lcd;
@@ -12,7 +12,7 @@ public:
     virtual void print_page() = 0;
     virtual void update_page() = 0;
     virtual void reset_page() = 0;
-    InfoDisplay(LiquidCrystal_I2C *lcd_);
+    InfoPage(LiquidCrystal_I2C *lcd_);
 };
 
 #endif
