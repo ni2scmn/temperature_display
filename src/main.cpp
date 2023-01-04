@@ -24,13 +24,12 @@ Display display(&lcd);
 
 TemperaturePage tp(&lcd);
 HumidityPage hp(&lcd);
-
 InfoPage *pages[n_pages] = {&tp, &hp};
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(7, INPUT_PULLUP);
+  button.init();
   lcd.init();
   display.turn_off();
   pages[selected_page]->print_page();

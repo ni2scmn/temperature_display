@@ -7,6 +7,7 @@ class Button
 {
 private:
   byte pin;
+  byte mode;
   unsigned long debounce_delay;
   unsigned long last_debounce_time;
   int last_button_state;
@@ -14,7 +15,8 @@ private:
   bool press_response_given;
 
 public:
-  Button(byte pin, int mode, unsigned long debounce_delay);
+  Button(byte pin_, int mode_, unsigned long debounce_delay_);
+  void init();
   bool is_pressed();
   bool is_pressed_new();
 };

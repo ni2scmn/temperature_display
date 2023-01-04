@@ -4,11 +4,17 @@
 Button::Button(byte pin_, int mode_, unsigned long debounce_delay_)
 {
     pin = pin_;
+    mode = mode_;
     last_debounce_time = millis();
     debounce_delay = debounce_delay_;
     last_button_state = HIGH;
 
     press_response_given = false;
+}
+
+void Button::init()
+{
+    pinMode(pin, mode);
 }
 
 bool Button::is_pressed()
