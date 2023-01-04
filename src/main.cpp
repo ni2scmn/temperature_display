@@ -41,6 +41,9 @@ void loop()
   // update page if neccessary
   if (check_update_page(last_update, update_interval))
   {
+    for(auto p: pages) {
+      p->update_measurement();
+    }
     pages[selected_page]->update_page();
   }
 

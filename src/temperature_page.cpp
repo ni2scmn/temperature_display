@@ -14,14 +14,16 @@ void TemperaturePage::print_page()
     update_page();
 }
 
-void TemperaturePage::update_page()
-{
+void TemperaturePage::update_measurement() {
     long temp_volt = analogRead(A0);
     temperature = map(temp_volt, 0, 410, -50, 150);
 
     max_temperature = new_max(temperature, max_temperature);
     min_temperature = new_min(temperature, min_temperature);
+}
 
+void TemperaturePage::update_page()
+{
     lcd->setCursor(2, 1);
     lcd->print(temperature);
     lcd->setCursor(7, 1);

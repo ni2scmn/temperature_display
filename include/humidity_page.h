@@ -19,6 +19,7 @@ public:
     void print_page();
     void update_page();
     void reset_page();
+    void update_measurement();
     HumidityPage(LiquidCrystal_I2C *lcd_);
 };
 

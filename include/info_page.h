@@ -12,6 +12,7 @@ public:
     virtual void print_page() = 0;
     virtual void update_page() = 0;
     virtual void reset_page() = 0;
+    virtual void update_measurement() = 0;
     InfoPage(LiquidCrystal_I2C *lcd_);
 };
 

@@ -14,14 +14,16 @@ void HumidityPage::print_page()
     update_page();
 }
 
-void HumidityPage::update_page()
-{
+void HumidityPage::update_measurement() {
     long temp_volt = analogRead(A0);
     humidity = map(temp_volt, 0, 410, -50, 150);
 
     max_humidity = new_max(humidity, max_humidity);
     min_humidity = new_min(humidity, min_humidity);
+}
 
+void HumidityPage::update_page()
+{
     lcd->setCursor(2, 1);
     lcd->print(humidity);
     lcd->setCursor(7, 1);
