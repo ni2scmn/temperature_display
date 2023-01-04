@@ -2,8 +2,15 @@
 
 void TemperaturePage::print_page()
 {
-    lcd->setCursor(1, 0);
-    lcd->print("Current/Max/Min:");
+    lcd->clear();
+    lcd->setCursor(5, 0);
+    lcd->print("Temperature");
+    lcd->setCursor(0, 1);
+    lcd->print("N:");
+    lcd->setCursor(5,1);
+    lcd->print("H:");
+    lcd->setCursor(10,1);
+    lcd->print("L:");
     update_page();
 }
 
@@ -15,11 +22,11 @@ void TemperaturePage::update_page()
     max_temperature = new_max(temperature, max_temperature);
     min_temperature = new_min(temperature, min_temperature);
 
-    lcd->setCursor(6, 1);
+    lcd->setCursor(2, 1);
     lcd->print(temperature);
-    lcd->setCursor(10, 1);
+    lcd->setCursor(7, 1);
     lcd->print(max_temperature);
-    lcd->setCursor(14, 1);
+    lcd->setCursor(12, 1);
     lcd->print(min_temperature);
 }
 
