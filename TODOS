@@ -1,4 +1,6 @@
 Round floats in dht correctly
 extract measurements
 dynamic pins
-button interrupt
+use serial for co2 sensor
+shift libs to lib folder
+min max values for co2
