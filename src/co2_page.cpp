@@ -20,7 +20,6 @@ void Co2Page::update_measurement() {
     float pulsepercent = pwmtime / 1004.0;
     co2_ppm = ppmrange * pulsepercent;
 
-    Serial.println(co2_ppm);
     max_co2_ppm = new_max(co2_ppm, max_co2_ppm);
     min_co2_ppm = new_min(co2_ppm, min_co2_ppm);
 }
