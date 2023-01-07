@@ -25,9 +25,9 @@ void Co2Page::update_measurement()
     min_co2_ppm = new_min(co2_ppm, min_co2_ppm);
 }
 
-int Co2Page::return_measurement()
+float Co2Page::return_measurement()
 {
-    return co2_ppm;
+    return (float)co2_ppm;
 }
 
 void Co2Page::update_page()

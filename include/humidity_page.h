@@ -13,16 +13,16 @@ class HumidityPage : public InfoPage
 {
 private:
     DHT *dht;
-    int humidity;
-    int min_humidity;
-    int max_humidity;
+    float humidity;
+    float min_humidity;
+    float max_humidity;
 
 public:
     void print_page();
     void update_page();
     void reset_page();
     void update_measurement();
-    int return_measurement();
+    float return_measurement();
     HumidityPage(LiquidCrystal_I2C *lcd_, DHT *dht_);
 };
 

@@ -13,16 +13,16 @@ class TemperaturePage : public InfoPage
 {
 private:
     DHT *dht;
-    int temperature;
-    int min_temperature;
-    int max_temperature;
+    float temperature;
+    float min_temperature;
+    float max_temperature;
 
 public:
     void print_page();
     void update_page();
     void reset_page();
     void update_measurement();
-    int return_measurement();
+    float return_measurement();
     TemperaturePage(LiquidCrystal_I2C *lcd_, DHT *dht_);
 };
 

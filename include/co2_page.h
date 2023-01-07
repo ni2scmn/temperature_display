@@ -21,7 +21,7 @@ public:
     void update_page();
     void reset_page();
     void update_measurement();
-    int return_measurement();
+    float return_measurement();
     Co2Page(LiquidCrystal_I2C *lcd_);
 };
 

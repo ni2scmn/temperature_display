@@ -16,12 +16,12 @@ void TemperaturePage::print_page()
 
 void TemperaturePage::update_measurement()
 {
-    temperature = (int)round(dht->readTemperature());
+    temperature = dht->readTemperature();
     max_temperature = new_max(temperature, max_temperature);
     min_temperature = new_min(temperature, min_temperature);
 }
 
-int TemperaturePage::return_measurement()
+float TemperaturePage::return_measurement()
 {
     return temperature;
 }
@@ -29,11 +29,11 @@ int TemperaturePage::return_measurement()
 void TemperaturePage::update_page()
 {
     lcd->setCursor(2, 1);
-    lcd->print(temperature);
+    lcd->print((int)round(temperature));
     lcd->setCursor(7, 1);
-    lcd->print(max_temperature);
+    lcd->print((int)round(max_temperature));
     lcd->setCursor(12, 1);
-    lcd->print(min_temperature);
+    lcd->print((int)round(min_temperature));
 }
 
 TemperaturePage::TemperaturePage(LiquidCrystal_I2C *lcd_, DHT *dht_) : InfoPage(lcd_)
