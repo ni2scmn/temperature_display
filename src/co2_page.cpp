@@ -14,7 +14,8 @@ void Co2Page::print_page()
     // update_page();
 }
 
-void Co2Page::update_measurement() {
+void Co2Page::update_measurement()
+{
     int ppmrange = 5000;
     unsigned long pwmtime = pulseIn(5, HIGH, 2000000) / 1000;
     float pulsepercent = pwmtime / 1004.0;
@@ -22,6 +23,11 @@ void Co2Page::update_measurement() {
 
     max_co2_ppm = new_max(co2_ppm, max_co2_ppm);
     min_co2_ppm = new_min(co2_ppm, min_co2_ppm);
+}
+
+int Co2Page::return_measurement()
+{
+    return co2_ppm;
 }
 
 void Co2Page::update_page()

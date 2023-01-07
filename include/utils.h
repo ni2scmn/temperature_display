@@ -8,6 +8,6 @@
 #define new_max(x, y) (((x) >= (y)) ? (x) : (y))
 #define new_min(x, y) (((x) <= (y)) ? (x) : (y))
 
-bool check_update_page(unsigned long &last_update, unsigned long update_interval);
+bool check_update(unsigned long &last_update, unsigned long update_interval);
 
 #endif

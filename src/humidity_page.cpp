@@ -7,20 +7,26 @@ void HumidityPage::print_page()
     lcd->print("Humidity");
     lcd->setCursor(0, 1);
     lcd->print("N:");
-    lcd->setCursor(5,1);
+    lcd->setCursor(5, 1);
     lcd->print("H:");
-    lcd->setCursor(10,1);
+    lcd->setCursor(10, 1);
     lcd->print("L:");
     update_page();
 }
 
-void HumidityPage::update_measurement() {
+void HumidityPage::update_measurement()
+{
     humidity = (int)round(dht->readHumidity());
     max_humidity = new_max(humidity, max_humidity);
     min_humidity = new_min(humidity, min_humidity);
 }
 
-HumidityPage::HumidityPage(LiquidCrystal_I2C *lcd_, DHT *dht_): InfoPage(lcd_)
+int HumidityPage::return_measurement()
+{
+    return humidity;
+}
+
+HumidityPage::HumidityPage(LiquidCrystal_I2C *lcd_, DHT *dht_) : InfoPage(lcd_)
 {
     dht = dht_;
     humidity = -100;

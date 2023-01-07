@@ -4,3 +4,5 @@ dynamic pins
 use serial for co2 sensor
 shift libs to lib folder
 min max values for co2
+button interrupt
+datalogger conditional compilation
