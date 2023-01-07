@@ -13,7 +13,7 @@
 #include "humidity_page.h"
 #include "co2_page.h"
 
-void log_values(RTC_DS1307 *rtc, int measurements[], int n_pages);
+void log_values(RTC_DS1307 *rtc, float measurements[], int n_pages);
 
 const byte button_pin = 2, dht_pin = 4, co2_pin = 5;
 const int debounce_delay = 50;
@@ -21,7 +21,7 @@ const int doubleclick_threshold = 500;
 
 volatile unsigned long last_button_press = 0;
 
-unsigned long last_update = 0, last_log = 0, page_update_interval = 300, log_interval = 2000;
+unsigned long last_update = 0, last_log = 0, page_update_interval = 300, log_interval = 15000;
 unsigned int display_duration = 5000;
 byte selected_page = 0;
 volatile bool unhandled_button_click = false, unhandled_double_click = false;
@@ -38,7 +38,7 @@ Co2Page cp(&lcd, co2_pin);
 
 const byte n_pages = 3;
 InfoPage *pages[n_pages] = {&cp, &tp, &hp};
-int *measurements = new int[n_pages];
+float *measurements = new float[n_pages];
 const String LOG_HEADER = "time, co2, temperature, humidity,";
 
 void button_interrupt()
@@ -163,7 +163,7 @@ void loop()
   }
 }
 
-void log_values(RTC_DS1307 *rtc, int measurements[], int n_pages)
+void log_values(RTC_DS1307 *rtc, float measurements[], int n_pages)
 {
   log_file = SD.open("tests.txt", FILE_WRITE);
 

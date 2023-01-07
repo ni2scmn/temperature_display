@@ -6,7 +6,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
 
-#include "info_page.h"
+#include <info_page.h>
 #include "utils.h"
 
 class Co2Page : public InfoPage
