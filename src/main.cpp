@@ -15,7 +15,7 @@
 
 void log_values(RTC_DS1307 *rtc, int measurements[], int n_pages);
 
-const int button_pin = 2, dht_pin = 4;
+const byte button_pin = 2, dht_pin = 4, co2_pin = 5;
 const int debounce_delay = 50;
 const int doubleclick_threshold = 500;
 
@@ -34,7 +34,7 @@ File log_file;
 
 TemperaturePage tp(&lcd, &dht);
 HumidityPage hp(&lcd, &dht);
-Co2Page cp(&lcd);
+Co2Page cp(&lcd, co2_pin);
 
 const byte n_pages = 3;
 InfoPage *pages[n_pages] = {&cp, &tp, &hp};

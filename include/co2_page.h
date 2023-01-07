@@ -12,6 +12,7 @@
 class Co2Page : public InfoPage
 {
 private:
+    byte sensor_pin;
     int co2_ppm;
     int max_co2_ppm;
     int min_co2_ppm;
@@ -22,7 +23,7 @@ public:
     void reset_page();
     void update_measurement();
     float return_measurement();
-    Co2Page(LiquidCrystal_I2C *lcd_);
+    Co2Page(LiquidCrystal_I2C *lcd_, byte sensor_pin_);
 };
 
 #endif

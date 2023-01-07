@@ -17,7 +17,7 @@ void Co2Page::print_page()
 void Co2Page::update_measurement()
 {
     int ppmrange = 5000;
-    unsigned long pwmtime = pulseIn(5, HIGH, 2000000) / 1000;
+    unsigned long pwmtime = pulseIn(sensor_pin, HIGH, 2000000) / 1000;
     float pulsepercent = pwmtime / 1004.0;
     co2_ppm = ppmrange * pulsepercent;
 
@@ -42,9 +42,10 @@ void Co2Page::update_page()
     // lcd->print(min_temperature);
 }
 
-Co2Page::Co2Page(LiquidCrystal_I2C *lcd_) : InfoPage(lcd_)
+Co2Page::Co2Page(LiquidCrystal_I2C *lcd_, byte sensor_pin_) : InfoPage(lcd_)
 {
-    pinMode(5, INPUT);
+    sensor_pin = sensor_pin_;
+    pinMode(sensor_pin_, INPUT);
     co2_ppm = -100;
     max_co2_ppm = -100;
     min_co2_ppm = 20000;
