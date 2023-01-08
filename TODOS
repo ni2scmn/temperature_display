@@ -1,5 +1,4 @@
 use serial for co2 sensor
-shift libs to lib folder
 min max values for co2
 datalogger conditional compilation
 prohibit interupt during measurement
